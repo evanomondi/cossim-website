@@ -8,6 +8,8 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json pnpm-lock.yaml* ./
+# Copy Prisma schema before installing dependencies (needed for postinstall script)
+COPY prisma ./prisma
 RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
