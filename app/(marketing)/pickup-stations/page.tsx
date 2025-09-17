@@ -211,7 +211,7 @@ export default function PickupStationsPage() {
     return matchesSearch && matchesCounty && matchesService;
   });
 
-  const counties = [...new Set(pickupStations.map(station => station.county))];
+  const counties = Array.from(new Set(pickupStations.map(station => station.county)));
 
   return (
     <div className="flex flex-col">

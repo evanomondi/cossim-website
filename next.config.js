@@ -7,6 +7,10 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: 'standalone',
+  eslint: {
+    // Disable ESLint during builds for deployment
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {

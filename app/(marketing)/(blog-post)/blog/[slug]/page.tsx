@@ -24,9 +24,11 @@ import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import { DashboardTableOfContents } from "@/components/shared/toc";
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post.slugAsParams,
-  }));
+  return allPosts
+    .filter((post) => post.slugAsParams)
+    .map((post) => ({
+      slug: post.slugAsParams,
+    }));
 }
 
 export async function generateMetadata({
@@ -67,9 +69,9 @@ export default async function PostPage({
 
   const relatedArticles =
     (post.related &&
-      post.related.map(
-        (slug) => allPosts.find((post) => post.slugAsParams === slug)!,
-      )) ||
+      post.related
+        .map((slug) => allPosts.find((post) => post.slugAsParams === slug))
+        .filter((post) => post !== undefined)) ||
     [];
 
   const toc = await getTableOfContents(post.body.raw);
