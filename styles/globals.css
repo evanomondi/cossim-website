@@ -30,6 +30,13 @@
     --chart-3: 270 91% 65%;
     --chart-4: 269 97% 85%;
     --chart-5: 269 100% 92%;
+    
+    /* Cossim Brand Colors */
+    --cossim-orange: 16 93% 60%;
+    --cossim-orange-light: 16 93% 70%;
+    --cossim-orange-dark: 16 93% 50%;
+    --cossim-black: 0 0% 10%;
+    --cossim-gray: 0 0% 45%;
   }
 
   .dark {
@@ -70,6 +77,10 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  a {
+    @apply text-cossim-orange/80 hover:text-cossim-orange transition-colors;
+  }
 }
 
 @layer utilities {
@@ -90,3 +101,19 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.text-gradient_cossim {
+  background: linear-gradient(90deg, hsl(var(--cossim-orange)) 0%, hsl(var(--cossim-orange-dark)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cossim Brand Utility Classes */
+.bg-cossim-orange { background-color: hsl(var(--cossim-orange)); }
+.bg-cossim-orange-light { background-color: hsl(var(--cossim-orange-light)); }
+.bg-cossim-orange-dark { background-color: hsl(var(--cossim-orange-dark)); }
+.text-cossim-orange { color: hsl(var(--cossim-orange)); }
+.text-cossim-black { color: hsl(var(--cossim-black)); }
+.text-cossim-gray { color: hsl(var(--cossim-gray)); }
+.border-cossim-orange { border-color: hsl(var(--cossim-orange)); }

@@ -2,26 +2,26 @@ import { FeatureLdg, InfoLdg, TestimonialType } from "types";
 
 export const infos: InfoLdg[] = [
   {
-    title: "Empower your projects",
+    title: "Streamline your logistics operations",
     description:
-      "Unlock the full potential of your projects with our open-source SaaS platform. Collaborate seamlessly, innovate effortlessly, and scale limitlessly.",
+      "Transform your business with Cossim's comprehensive logistics solutions. From express delivery to warehousing, we handle the complexity so you can focus on growth.",
     image: "/_static/illustrations/work-from-home.jpg",
     list: [
       {
-        title: "Collaborative",
-        description: "Work together with your team members in real-time.",
-        icon: "laptop",
+        title: "Express Delivery",
+        description: "1-hour, same-day, and next-day delivery across Kenya.",
+        icon: "truck",
       },
       {
-        title: "Innovative",
-        description: "Stay ahead of the curve with access constant updates.",
-        icon: "settings",
+        title: "Secure Storage",
+        description: "Safe warehousing with advanced inventory management.",
+        icon: "warehouse",
       },
       {
-        title: "Scalable",
+        title: "Nationwide Coverage",
         description:
-          "Our platform offers the scalability needed to adapt to your needs.",
-        icon: "search",
+          "Pickup stations and delivery network covering all major cities.",
+        icon: "mapPin",
       },
     ],
   },
@@ -54,97 +54,90 @@ export const infos: InfoLdg[] = [
 
 export const features: FeatureLdg[] = [
   {
-    title: "Feature 1",
+    title: "Last Mile Delivery",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
-    link: "/",
-    icon: "nextjs",
+      "Express 1-hour delivery, same-day, and next-day services with real-time tracking and cash collection.",
+    link: "/lastmile",
+    icon: "truck",
   },
   {
-    title: "Feature 2",
+    title: "Pickup Stations",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
-    link: "/",
-    icon: "google",
+      "Convenient pickup points across Kenya with 7-day holding period and rent-a-shelf options.",
+    link: "/pickup-stations",
+    icon: "mapPin",
   },
   {
-    title: "Feature 3",
+    title: "Warehousing Solutions",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
-    link: "/",
-    icon: "gitHub",
+      "Secure storage, inventory management, and fulfillment services on-site or at customer premises.",
+    link: "/warehousing",
+    icon: "warehouse",
   },
   {
-    title: "Feature 4",
+    title: "Real-time Tracking",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "Monitor your shipments in real-time with detailed tracking and delivery confirmation.",
     link: "/",
-    icon: "laptop",
+    icon: "search",
   },
   {
-    title: "Feature 5",
+    title: "Cash on Delivery",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "Collect payments on behalf of clients with secure remittance in full.",
     link: "/",
-    icon: "user",
+    icon: "creditCard",
   },
   {
-    title: "Feature 6",
+    title: "Dedicated Support",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "24/7 customer support with dedicated account managers for enterprise clients.",
     link: "/",
-    icon: "copy",
+    icon: "headphones",
   },
 ];
 
 export const testimonials: TestimonialType[] = [
   {
-    name: "John Doe",
-    job: "Full Stack Developer",
-    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    name: "Sarah Mwangi",
+    job: "E-commerce Manager, TechHub Kenya",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
     review:
-      "The next-saas-stripe-starter repo has truly revolutionized my development workflow. With its comprehensive features and seamless integration with Stripe, I've been able to build and deploy projects faster than ever before. The documentation is clear and concise, making it easy to navigate through the setup process. I highly recommend next-saas-stripe-starter to any developer.",
+      "Cossim's same-day delivery service has transformed our customer satisfaction rates. We went from 72% to 95% customer satisfaction in just 3 months. Their real-time tracking system gives our customers peace of mind, and the cash collection service has improved our cash flow significantly.",
   },
   {
-    name: "Alice Smith",
-    job: "UI/UX Designer",
-    image: "https://randomuser.me/api/portraits/women/2.jpg",
+    name: "James Kiprotich",
+    job: "Operations Director, Fresh Grocers Ltd",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     review:
-      "Thanks to next-saas-stripe-starter, I've been able to create modern and attractive user interfaces in record time. The starter kit provides a solid foundation for building sleek and intuitive designs, allowing me to focus more on the creative aspects of my work.",
+      "The pickup stations have been a game-changer for our business. Our customers love the convenience of collecting their orders at their preferred time and location. The 7-day holding period gives them flexibility, and we've seen a 40% reduction in failed deliveries.",
   },
   {
-    name: "David Johnson",
-    job: "DevOps Engineer",
-    image: "https://randomuser.me/api/portraits/men/3.jpg",
+    name: "Grace Achieng",
+    job: "Supply Chain Manager, Fashion Forward",
+    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=face",
     review:
-      "Thanks to next-saas-stripe-starter, I was able to streamline the entire process and get payments up and running in no time. ",
+      "Cossim's warehousing solutions allowed us to expand into new markets without the overhead of setting up our own facilities. Their inventory management system is top-notch, and we've reduced our fulfillment errors by 85%. Highly recommended!",
   },
   {
-    name: "Michael Wilson",
-    job: "Project Manager",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
+    name: "Peter Mutua",
+    job: "CEO, Nairobi Electronics",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     review:
-      "I'm impressed by the quality of code and clear documentation of next-saas-stripe-starter. Kudos to the team!",
+      "The express 1-hour delivery service has given us a competitive edge in the electronics market. When customers need urgent repairs or replacements, we can deliver within an hour. This service alone has increased our revenue by 30%.",
   },
   {
-    name: "Sophia Garcia",
-    job: "Data Analyst",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    name: "Mary Wanjiku",
+    job: "Logistics Coordinator, Pharma Plus",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
     review:
-      "next-saas-stripe-starter provided me with the tools I needed to efficiently manage user data. Thank you so much!",
+      "As a pharmaceutical company, we need reliable and secure logistics. Cossim's temperature-controlled storage and secure delivery network ensures our products maintain their integrity throughout the supply chain. Their compliance with health regulations is excellent.",
   },
   {
-    name: "Emily Brown",
-    job: "Marketing Manager",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    name: "David Otieno",
+    job: "Founder, Artisan Crafts Kenya",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
     review:
-      "next-saas-stripe-starter has been an invaluable asset in my role as a marketing manager. With its seamless integration with Stripe, I've been able to launch targeted marketing campaigns with built-in payment functionality, allowing us to monetize our products and services more effectively.",
-  },
-  {
-    name: "Jason Stan",
-    job: "Web Designer",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
-    review:
-      "Thanks to next-saas-stripe-starter, I've been able to create modern and attractive user interfaces in record time. The starter kit provides a solid foundation for building sleek and intuitive designs, allowing me to focus more on the creative aspects of my work.",
+      "The rent-a-shelf service at pickup stations has been perfect for our artisan products. We can showcase our crafts in high-traffic locations without the cost of traditional retail space. Sales have increased by 60% since partnering with Cossim.",
   },
 ];

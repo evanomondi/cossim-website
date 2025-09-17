@@ -9,8 +9,10 @@ import { NewsletterForm } from "../forms/newsletter-form";
 import { Icons } from "../shared/icons";
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <footer className={cn("border-t", className)}>
+    <footer className={cn("border-t relative z-20", className)}>
       <div className="container grid max-w-6xl grid-cols-2 gap-6 py-14 md:grid-cols-5">
         {footerLinks.map((section) => (
           <div key={section.title}>
@@ -37,39 +39,24 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
       </div>
 
       <div className="border-t py-4">
-        <div className="container flex max-w-6xl items-center justify-between">
-          {/* <span className="text-muted-foreground text-sm">
-            Copyright &copy; 2024. All rights reserved.
-          </span> */}
-          <p className="text-left text-sm text-muted-foreground">
-            Built by{" "}
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              mickasmt
-            </Link>
-            . Hosted on{" "}
-            <Link
-              href="https://vercel.com"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Vercel
-            </Link>
-            . Illustrations by{" "}
-            <Link
-              href="https://popsy.co"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Popsy
-            </Link>
-          </p>
+        <div className="container flex max-w-6xl items-center justify-between flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-muted-foreground">
+            <span>
+              © {currentYear} Cossim. All rights reserved.
+            </span>
+            <span className="flex items-center gap-1">
+              Made with{" "}
+              <span 
+                className="text-red-500 inline-block animate-pulse"
+                style={{
+                  animation: 'heartbeat 1.5s ease-in-out infinite'
+                }}
+              >
+                ❤️
+              </span>{" "}
+              from Kenya
+            </span>
+          </div>
 
           <div className="flex items-center gap-3">
             <Link
@@ -84,6 +71,13 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        @keyframes heartbeat {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.2); }
+        }
+      `}</style>
     </footer>
   );
 }

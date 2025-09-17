@@ -54,6 +54,14 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Cossim Brand Colors
+        "cossim-orange": {
+          DEFAULT: "hsl(var(--cossim-orange))",
+          light: "hsl(var(--cossim-orange-light))",
+          dark: "hsl(var(--cossim-orange-dark))",
+        },
+        "cossim-black": "hsl(var(--cossim-black))",
+        "cossim-gray": "hsl(var(--cossim-gray))",
       },
       borderRadius: {
         lg: "var(--radius)",

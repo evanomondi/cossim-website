@@ -1,10 +1,10 @@
-<a href="https://next-saas-stripe-starter.vercel.app">
-  <img alt="SaaS Starter" src="public/_static/og.jpg">
-  <h1 align="center">Next SaaS Stripe Starter</h1>
+<a href="https://cossim.co.ke">
+  <img alt="Cossim Ltd" src="public/_static/og.jpg">
+  <h1 align="center">Cossim Ltd - Logistics Website</h1>
 </a>
 
 <p align="center">
-  Start at full speed with SaaS Starter !
+  Kenya's Premier B2B Logistics Solutions Platform
 </p>
 
 <p align="center">
@@ -24,23 +24,27 @@
 
 ## Introduction
 
-Empower your next project with the stack of Next.js 14, Prisma, Neon, Auth.js v5, Resend, React Email, Shadcn/ui, and Stripe.
-<br/>
-All seamlessly integrated with the SaaS Starter to accelerate your development and saas journey.
+Cossim Ltd's comprehensive logistics website built with Next.js 14, featuring three main service offerings:
+- **Last Mile Delivery**: Express 1-hour, same-day, and next-day delivery services
+- **Pickup Stations**: Convenient pickup points across Kenya with rent-a-shelf options
+- **Warehousing**: Storage, fulfillment, and fulfillment-as-a-service solutions
+
+Built with modern tech stack including Prisma, Neon, Auth.js v5, Resend, React Email, Shadcn/ui, and Stripe.
 
 ## Installation
 
-Clone & create this repo locally with the following command:
+Clone this repository locally:
 
 ```bash
-npx create-next-app my-saas-project --example "https://github.com/mickasmt/next-saas-stripe-starter"
+git clone https://github.com/cossim/website.git
+cd website
 ```
 
-Or, deploy with Vercel:
+## Deployment with CapRover
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmickasmt%2Fnext-saas-stripe-starter)
+This project is configured for deployment using CapRover with GitHub webhooks for automated deployments.
 
-### Steps
+### Local Development
 
 1. Install dependencies using pnpm:
 
@@ -48,7 +52,7 @@ Or, deploy with Vercel:
 pnpm install
 ```
 
-2. Copy `.env.example` to `.env.local` and update the variables.
+2. Copy `.env.example` to `.env.local` and update the variables:
 
 ```sh
 cp .env.example .env.local
@@ -60,14 +64,67 @@ cp .env.example .env.local
 pnpm run dev
 ```
 
+### CapRover Deployment Setup
+
+1. **Install CapRover** on your server following the [official documentation](https://caprover.com/docs/get-started.html)
+
+2. **Create a new app** in CapRover:
+   - Login to your CapRover dashboard
+   - Create a new app (e.g., `cossim-website`)
+   - Enable HTTPS and set up your domain
+
+3. **Configure the app**:
+   - Go to your app settings
+   - Enable "Has Persistent Data" if needed
+   - Set environment variables in the app settings
+
+4. **Setup GitHub Webhook**:
+   - In your CapRover app, go to "Deployment" tab
+   - Copy the webhook URL
+   - In your GitHub repository, go to Settings > Webhooks
+   - Add a new webhook with:
+     - Payload URL: Your CapRover webhook URL
+     - Content type: `application/json`
+     - Events: Select "Just the push event"
+     - Active: ✓
+
+5. **Create captain-definition file** (already included in this project):
+
+```json
+{
+  "schemaVersion": 2,
+  "dockerfilePath": "./Dockerfile"
+}
+```
+
+6. **Environment Variables**:
+   Set the following environment variables in CapRover:
+   ```
+   NODE_ENV=production
+   NEXT_PUBLIC_APP_URL=https://your-domain.com
+   DATABASE_URL=your-database-url
+   NEXTAUTH_SECRET=your-secret
+   NEXTAUTH_URL=https://your-domain.com
+   ```
+
+### Automatic Deployment
+
+Once set up, every push to the main branch will trigger an automatic deployment to CapRover.
+
 > [!NOTE]  
-> I use [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) package for update this project.
->
-> Use this command for update your project: `ncu -i --format group`
+> For updates, use [npm-check-updates](https://www.npmjs.com/package/npm-check-updates): `ncu -i --format group`
 
 ## Roadmap
-- [ ] Upgrade eslint to v9
-- [ ] Add resend for success subscriptions
+- [x] Complete website transformation for Cossim Ltd
+- [x] Create three main service pages (Last Mile, Pickup Stations, Warehousing)
+- [x] Implement Rally.com-inspired design and animations
+- [x] Configure CapRover deployment with GitHub webhooks
+- [x] Update branding and content for logistics industry
+- [ ] Add interactive map for pickup stations
+- [ ] Implement real-time package tracking
+- [ ] Add multi-language support (Swahili)
+- [ ] Integrate payment gateway for services
+- [ ] Add admin dashboard for logistics management
 
 ## Tech Stack + Features
 

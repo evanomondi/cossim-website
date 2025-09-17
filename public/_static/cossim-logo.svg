@@ -1,0 +1,28 @@
+<svg width="300" height="80" viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cossim Logo - Exact recreation based on provided image -->
+  
+  <!-- C Icon - Orange and Black curved design -->
+  <g transform="translate(10, 10)">
+    <!-- Orange C part (left side) -->
+    <path d="M30 30C30 13.4315 16.5685 0 0 0V12C10.4934 12 19 20.5066 19 30C19 39.4934 10.4934 48 0 48V60C16.5685 60 30 46.5685 30 30Z" fill="#FF6B35"/>
+    <!-- Black C part (right side) -->
+    <path d="M60 30C60 46.5685 46.5685 60 30 60V48C39.4934 48 48 39.4934 48 30C48 20.5066 39.4934 12 30 12V0C46.5685 0 60 13.4315 60 30Z" fill="#000000"/>
+  </g>
+  
+  <!-- COSSIM Text -->
+  <g transform="translate(85, 20)">
+    <!-- CO in black -->
+    <text x="0" y="28" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#000000">CO</text>
+    <!-- First S in orange -->
+    <text x="65" y="28" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#FF6B35">S</text>
+    <!-- Second S in orange (mirrored) -->
+    <text x="85" y="28" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#FF6B35" transform="scale(-1,1)" transform-origin="95 14">S</text>
+    <!-- IM in black -->
+    <text x="105" y="28" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#000000">IM</text>
+  </g>
+  
+  <!-- LIMITED Text -->
+  <g transform="translate(85, 50)">
+    <text x="0" y="15" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#FF6B35" letter-spacing="4px">LIMITED</text>
+  </g>
+</svg>

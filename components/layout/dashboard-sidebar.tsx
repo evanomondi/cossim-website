@@ -201,13 +201,14 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
             <div className="flex h-screen flex-col">
               <nav className="flex flex-1 flex-col gap-y-8 p-6 text-lg font-medium">
                 <Link
-                  href="#"
+                  href="/"
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
-                  <Icons.logo className="size-6" />
-                  <span className="font-urban text-xl font-bold">
-                    {siteConfig.name}
-                  </span>
+                  <img 
+                    src="/_static/cossim-logo.svg" 
+                    alt="Cossim Ltd Logo" 
+                    className="h-6 w-auto"
+                  />
                 </Link>
 
                 <ProjectSwitcher large />

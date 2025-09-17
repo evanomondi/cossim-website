@@ -4,44 +4,44 @@ import { env } from "@/env.mjs";
 const site_url = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  name: "SaaS Starter",
+  name: "Cossim Ltd",
   description:
-    "Get your project off to an explosive start with SaaS Starter! Harness the power of Next.js 14, Prisma, Neon, Auth.js v5, Resend, React Email, Shadcn/ui and Stripe to build your next big thing.",
+    "Premier B2B logistics solutions in Kenya. Specializing in last-mile delivery, pickup stations, warehousing, and fulfillment services. Express, same-day, and next-day delivery across Kenya.",
   url: site_url,
   ogImage: `${site_url}/_static/og.jpg`,
   links: {
-    twitter: "https://twitter.com/miickasmt",
-    github: "https://github.com/mickasmt/next-saas-stripe-starter",
+    twitter: "https://twitter.com/cossimltd",
+    github: "https://github.com/cossim/website",
   },
-  mailSupport: "support@saas-starter.com",
+  mailSupport: "support@cossim.co.ke",
 };
 
 export const footerLinks: SidebarNavItem[] = [
   {
+    title: "Services",
+    items: [
+      { title: "Last Mile Delivery", href: "/lastmile" },
+      { title: "Pickup Stations", href: "/pickup-stations" },
+      { title: "Warehousing", href: "/warehousing" },
+      { title: "Track Package", href: "/track" },
+    ],
+  },
+  {
     title: "Company",
     items: [
-      { title: "About", href: "#" },
-      { title: "Enterprise", href: "#" },
-      { title: "Terms", href: "/terms" },
-      { title: "Privacy", href: "/privacy" },
+      { title: "About Us", href: "/about" },
+      { title: "Contact", href: "/contact" },
+      { title: "Careers", href: "/careers" },
+      { title: "News", href: "/news" },
     ],
   },
   {
-    title: "Product",
+    title: "Support",
     items: [
-      { title: "Security", href: "#" },
-      { title: "Customization", href: "#" },
-      { title: "Customers", href: "#" },
-      { title: "Changelog", href: "#" },
-    ],
-  },
-  {
-    title: "Docs",
-    items: [
-      { title: "Introduction", href: "#" },
-      { title: "Installation", href: "#" },
-      { title: "Components", href: "#" },
-      { title: "Code Blocks", href: "#" },
+      { title: "Help Center", href: "/help" },
+      { title: "API Documentation", href: "/docs" },
+      { title: "Terms of Service", href: "/terms" },
+      { title: "Privacy Policy", href: "/privacy" },
     ],
   },
 ];

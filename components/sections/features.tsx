@@ -12,10 +12,9 @@ export default function Features() {
       <div className="pb-6 pt-28">
         <MaxWidthWrapper>
           <HeaderSection
-            label="Features"
-            title="Discover all features."
-            subtitle="Harum quae dolore inventore repudiandae? orrupti aut temporibus
-          ariatur."
+            label="Our Services"
+            title="Complete Logistics Solutions"
+            subtitle="From express delivery to warehousing, we provide comprehensive B2B logistics services that scale with your business needs."
           />
 
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

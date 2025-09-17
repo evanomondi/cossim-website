@@ -31,15 +31,15 @@ export default function Testimonials() {
                         />
                       </span>
                       <div>
-                        <p className="text-sm font-semibold text-foreground">
+                        <p className="text-sm font-semibold text-white">
                           {item.name}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-white/80">
                           {item.job}
                         </p>
                       </div>
                     </div>
-                    <q className="text-muted-foreground">{item.review}</q>
+                    <q className="text-white/90">{item.review}</q>
                   </div>
                 </div>
               </div>

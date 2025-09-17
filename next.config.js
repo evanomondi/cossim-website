@@ -6,6 +6,7 @@ import("./env.mjs");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
@@ -19,6 +20,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "randomuser.me",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
     ],
   },
