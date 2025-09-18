@@ -10,7 +10,16 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml* ./
 # Copy Prisma schema before installing dependencies (needed for postinstall script)
 COPY prisma ./prisma
-RUN npm install -g pnpm && pnpm install --frozen-lockfile
+RUN npm install -g pnpm && pnpm install --frozen-lockfile && \
+    # Clean up after dependency installation
+    pnpm store prune && \
+    rm -rf ~/.npm ~/.cache /tmp/* /var/tmp/* && \
+    # Remove unnecessary files from node_modules
+    find node_modules -name "*.md" -delete 2>/dev/null || true && \
+    find node_modules -name "*.txt" -delete 2>/dev/null || true && \
+    find node_modules -name "test" -type d -exec rm -rf {} + 2>/dev/null || true && \
+    find node_modules -name "tests" -type d -exec rm -rf {} + 2>/dev/null || true && \
+    find node_modules -name "docs" -type d -exec rm -rf {} + 2>/dev/null || true
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -23,7 +32,15 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production 
 
 # Build the application
-RUN npm install -g pnpm && pnpm build
+RUN npm install -g pnpm && pnpm build && \
+    # Clean up after build to free space
+    rm -rf ~/.npm ~/.cache /tmp/* /var/tmp/* && \
+    # Remove source files that are no longer needed
+    rm -rf components/charts components/forms components/modals && \
+    rm -rf content/blog content/guides && \
+    # Keep only essential files for runtime
+    find . -name "*.log" -delete 2>/dev/null || true && \
+    find . -name ".DS_Store" -delete 2>/dev/null || true
 
 # Production image, copy all the files and run next
 FROM base AS runner
@@ -43,7 +60,17 @@ RUN npm install -g pnpm prisma && \
     find /app -name "*.log" -delete 2>/dev/null || true && \
     find /app -name ".DS_Store" -delete 2>/dev/null || true
 
-COPY --from=builder /app/public ./public
+# Copy public directory in smaller chunks to manage disk space
+COPY --from=builder /app/public/favicon.ico ./public/
+COPY --from=builder /app/public/site.webmanifest ./public/
+RUN mkdir -p ./public/_static && \
+    # Aggressive cleanup before copying static assets
+    rm -rf /tmp/* /var/tmp/* ~/.npm ~/.cache 2>/dev/null || true && \
+    # Remove any Docker layer cache
+    find /var/lib/docker -type f -name "*.log" -delete 2>/dev/null || true && \
+    # Force garbage collection
+    sync && echo 3 > /proc/sys/vm/drop_caches 2>/dev/null || true
+COPY --from=builder /app/public/_static ./public/_static
 
 # Set the correct permission for prerender cache
 RUN mkdir .next
