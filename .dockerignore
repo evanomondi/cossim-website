@@ -5,16 +5,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Documentation and development files (safe to exclude)
-*.md
-README*
-LICENSE*
-CHANGELOG*
-.husky/
-.commitlintrc.json
-.prettierignore
-prettier.config.js
-
 # Local env files
 .env
 .env.local
