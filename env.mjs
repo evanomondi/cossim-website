@@ -23,8 +23,6 @@ export const env = createEnv({
     NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID: z.string().min(1).optional(),
     NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID: z.string().min(1).optional(),
   },
-  // Skip validation during build if AUTH_SECRET is not available
-  skipValidation: !!process.env.SKIP_ENV_VALIDATION || !process.env.AUTH_SECRET,
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     AUTH_SECRET: process.env.AUTH_SECRET,

@@ -3,7 +3,7 @@ FROM node:18-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-RUN apk add --no-cache libc6-compat openssl-dev
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -20,8 +20,7 @@ COPY . .
 
 # Set environment variables for build
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV production
-ENV SKIP_ENV_VALIDATION 1
+ENV NODE_ENV production 
 
 # Build the application
 RUN npm install -g pnpm && pnpm build
@@ -32,9 +31,6 @@ WORKDIR /app
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
-
-# Install OpenSSL for Prisma
-RUN apk add --no-cache openssl
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
