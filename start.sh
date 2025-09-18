@@ -13,7 +13,7 @@ prisma --version
 
 # Test database connection
 echo "Testing database connection..."
-prisma db execute --stdin <<< "SELECT 1;" || {
+echo "SELECT 1;" | prisma db execute --stdin || {
     echo "WARNING: Database connection test failed, but continuing..."
 }
 
