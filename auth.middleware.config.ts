@@ -2,9 +2,10 @@ import type { NextAuthConfig } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import Resend from "next-auth/providers/resend";
+import type { Provider } from "next-auth/providers";
 
 // Build providers array conditionally for middleware
-const providers = [];
+const providers: Provider[] = [];
 
 // Add GitHub provider if credentials are available
 if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {

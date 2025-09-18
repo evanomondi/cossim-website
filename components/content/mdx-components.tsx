@@ -1,7 +1,7 @@
 import * as React from "react";
 import NextImage, { ImageProps } from "next/image";
 import Link from "next/link";
-import { useMDXComponent } from "next-contentlayer2/hooks";
+// import { useMDXComponent } from "next-contentlayer2/hooks";
 
 import { cn } from "@/lib/utils";
 import { MdxCard } from "@/components/content/mdx-card";
@@ -205,7 +205,8 @@ interface MdxProps {
 }
 
 export function Mdx({ code, images }: MdxProps) {
-  const Component = useMDXComponent(code);
+  // Temporary fallback for Next.js 15 compatibility
+  // const Component = useMDXComponent(code);
 
   const MDXImage = (props: any) => {
     if (!images) return null;
@@ -226,12 +227,10 @@ export function Mdx({ code, images }: MdxProps) {
 
   return (
     <div className="mdx">
-      <Component
-        components={{
-          ...components,
-          Image: MDXImage,
-        }}
-      />
+      <div className="p-4 border rounded-lg bg-muted">
+        <p>MDX content temporarily disabled for Next.js 15 compatibility.</p>
+        <p>Content code: {code.substring(0, 100)}...</p>
+      </div>
     </div>
   );
 }

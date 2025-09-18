@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
-import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
 import { cn, nFormatter } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -17,22 +19,15 @@ const CardNav = dynamic(() => import("@/components/shared/CardNav"), {
   loading: () => <div className="h-16" />
 });
 
-export default async function HeroLanding() {
-  const { stargazers_count: stars } = await fetch(
-    "https://api.github.com/repos/mickasmt/next-saas-stripe-starter",
-    {
-      ...(env.GITHUB_OAUTH_TOKEN && {
-        headers: {
-          Authorization: `Bearer ${process.env.GITHUB_OAUTH_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }),
-      // data will revalidate every hour
-      next: { revalidate: 3600 },
-    },
-  )
-    .then((res) => res.json())
-    .catch((e) => console.log(e));
+export default function HeroLanding() {
+  const [stars, setStars] = useState<number>(0);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/mickasmt/next-saas-stripe-starter")
+      .then((res) => res.json())
+      .then((data) => setStars(data.stargazers_count || 0))
+      .catch((e) => console.log(e));
+  }, []);
 
   // Navigation items for CardNav
   const navItems = [
