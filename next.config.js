@@ -5,7 +5,6 @@ import("./env.mjs");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   output: 'standalone',
   eslint: {
     // Disable ESLint during builds for deployment
@@ -31,9 +30,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ["@prisma/client"],
-  },
+  serverExternalPackages: ["@prisma/client"],
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.externals.push("@react-email/components");

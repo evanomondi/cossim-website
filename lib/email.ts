@@ -7,10 +7,17 @@ import { siteConfig } from "@/config/site";
 
 import { getUserByEmail } from "./user";
 
-export const resend = new Resend(env.RESEND_API_KEY);
+// Only initialize Resend if API key is available
+export const resend = env.RESEND_API_KEY ? new Resend(env.RESEND_API_KEY) : null;
 
 export const sendVerificationRequest: EmailConfig["sendVerificationRequest"] =
   async ({ identifier, url, provider }) => {
+    // Check if Resend is available
+    if (!resend) {
+      console.log("Resend not configured, skipping email send");
+      return;
+    }
+
     const user = await getUserByEmail(identifier);
     
     // Handle both existing users and new registrations

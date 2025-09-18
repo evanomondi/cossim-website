@@ -19,8 +19,8 @@ if (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) {
   );
 }
 
-// Only add Resend provider if API key is available
-if (env.RESEND_API_KEY && env.EMAIL_FROM) {
+// Only add Resend provider if API key is available and valid (not placeholder)
+if (env.RESEND_API_KEY && env.EMAIL_FROM && env.RESEND_API_KEY.startsWith('re_') && env.RESEND_API_KEY !== 're_placeholder_key') {
   providers.push(
     Resend({
       apiKey: env.RESEND_API_KEY,

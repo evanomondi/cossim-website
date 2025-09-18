@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Starting application deployment..."
- 
+
 # Run Prisma migrations
 echo "Running Prisma migrations..."
 prisma migrate deploy
