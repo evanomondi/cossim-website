@@ -12,9 +12,10 @@ export const resend = new Resend(env.RESEND_API_KEY);
 export const sendVerificationRequest: EmailConfig["sendVerificationRequest"] =
   async ({ identifier, url, provider }) => {
     const user = await getUserByEmail(identifier);
-    if (!user || !user.name) return;
-
+    
+    // Handle both existing users and new registrations
     const userVerified = user?.emailVerified ? true : false;
+    const firstName = user?.name || "User";
     const authSubject = userVerified
       ? `Sign-in link for ${siteConfig.name}`
       : "Activate your account";
@@ -28,7 +29,7 @@ export const sendVerificationRequest: EmailConfig["sendVerificationRequest"] =
             : identifier,
         subject: authSubject,
         react: MagicLinkEmail({
-          firstName: user?.name as string,
+          firstName: firstName,
           actionUrl: url,
           mailType: userVerified ? "login" : "register",
           siteName: siteConfig.name,
@@ -41,11 +42,12 @@ export const sendVerificationRequest: EmailConfig["sendVerificationRequest"] =
       });
 
       if (error || !data) {
-        throw new Error(error?.message);
+        throw new Error(error?.message || "Unknown email error");
       }
 
-      // console.log(data)
+      console.log("Email sent successfully:", data);
     } catch (error) {
+      console.error("Email sending failed:", error);
       throw new Error("Failed to send verification email.");
     }
   };
