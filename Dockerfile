@@ -35,6 +35,9 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Install pnpm and Prisma CLI globally for migrations
+RUN npm install -g pnpm prisma
+
 COPY --from=builder /app/public ./public
 
 # Set the correct permission for prerender cache
@@ -45,10 +48,10 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy Prisma files for migrations
+# Copy Prisma files and full node_modules for migrations
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.pnpm ./node_modules/.pnpm
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin ./node_modules/.bin
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 
 # Copy startup script
 COPY --chown=nextjs:nodejs start.sh /app/start.sh
