@@ -34,6 +34,12 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ["@prisma/client"],
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push("@react-email/components");
+    }
+    return config;
+  },
 };
 
 module.exports = withContentlayer(nextConfig);
