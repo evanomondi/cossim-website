@@ -50,11 +50,12 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Copy Prisma files for migrations
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
-COPY --from=builder --chown=nextjs:nodejs /app/pnpm-lock.yaml ./pnpm-lock.yaml
 
-# Install only production dependencies and Prisma for migrations
-RUN pnpm install --prod --frozen-lockfile
+# Create minimal package.json for Prisma only
+RUN echo '{"dependencies":{"prisma":"^5.17.0","@prisma/client":"6.16.2"}}' > package.json
+
+# Install only Prisma CLI and client for migrations (much smaller)
+RUN pnpm install --prod
 
 # Copy startup script
 COPY --chown=nextjs:nodejs start.sh /app/start.sh
