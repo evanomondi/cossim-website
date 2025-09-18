@@ -58,48 +58,10 @@ pnpm install
 cp .env.example .env.local
 ```
 
-3. Set up the database:
-
-```sh
-# Generate Prisma client
-pnpm prisma generate
-
-# Run database migrations
-pnpm prisma db push
-
-# (Optional) Seed the database
-pnpm prisma db seed
-```
-
-4. Start the development server:
+3. Start the development server:
 
 ```sh
 pnpm run dev
-```
-
-## Database Setup
-
-This project uses PostgreSQL with Prisma ORM. You can use:
-
-- **Local PostgreSQL**: Install PostgreSQL locally
-- **Neon**: Serverless PostgreSQL (recommended for production)
-- **Supabase**: PostgreSQL with additional features
-- **Railway**: Simple PostgreSQL hosting
-
-### Database Migration Commands
-
-```sh
-# Generate Prisma client after schema changes
-pnpm prisma generate
-
-# Push schema changes to database (development)
-pnpm prisma db push
-
-# Create and run migrations (production)
-pnpm prisma migrate deploy
-
-# View your data in Prisma Studio
-pnpm prisma studio
 ```
 
 ### CapRover Deployment Setup
@@ -138,49 +100,12 @@ pnpm prisma studio
 6. **Environment Variables**:
    Set the following environment variables in CapRover:
    ```
-   # App Configuration
    NODE_ENV=production
    NEXT_PUBLIC_APP_URL=https://your-domain.com
-   
-   # Database
-   DATABASE_URL=postgresql://username:password@host:port/database
-   
-   # Authentication (Required)
-   AUTH_SECRET=your-generated-secret-key
+   DATABASE_URL=your-database-url
+   NEXTAUTH_SECRET=your-secret
    NEXTAUTH_URL=https://your-domain.com
-   
-   # Google OAuth (Optional - for social login)
-   GOOGLE_CLIENT_ID=your-google-client-id
-   GOOGLE_CLIENT_SECRET=your-google-client-secret
-   
-   # Stripe (Optional - for payments)
-   STRIPE_API_KEY=your-stripe-secret-key
-   STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
-   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your-stripe-publishable-key
-   
-   # Email (Optional - for transactional emails)
-   RESEND_API_KEY=your-resend-api-key
-   EMAIL_FROM=noreply@your-domain.com
    ```
-   
-   **Generate AUTH_SECRET**: Run `npx auth secret` or use [this generator](https://generate-secret.vercel.app/32)
-
-### Admin User Setup
-
-**Important**: There are no default admin credentials. To access the admin panel (`/admin`):
-
-1. **Register a new user** through the website's `/register` page
-2. **Update the user role in your database**:
-   ```sql
-   UPDATE users SET role = 'ADMIN' WHERE email = 'your-email@example.com';
-   ```
-3. **Login with your credentials** - you'll now have access to:
-   - Admin Panel: `/admin`
-   - Logistics Management Dashboard
-   - User Role Management
-   - Order Management
-
-Alternatively, you can update user roles through the Settings page (`/dashboard/settings`) if you have database access.
 
 ### Automatic Deployment
 
@@ -195,17 +120,11 @@ Once set up, every push to the main branch will trigger an automatic deployment 
 - [x] Implement Rally.com-inspired design and animations
 - [x] Configure CapRover deployment with GitHub webhooks
 - [x] Update branding and content for logistics industry
-- [x] Fix production deployment issues (NextAuth, CORS, 404 errors)
-- [x] Create missing routes (/track, /careers, /news, /help)
-- [x] Configure admin panel and user role management
 - [ ] Add interactive map for pickup stations
-- [ ] Implement real-time package tracking system
+- [ ] Implement real-time package tracking
 - [ ] Add multi-language support (Swahili)
-- [ ] Integrate M-Pesa payment gateway for Kenya
-- [ ] Add SMS notifications for delivery updates
-- [ ] Implement inventory management for warehousing
-- [ ] Add customer portal for shipment management
-- [ ] Create mobile app for delivery drivers
+- [ ] Integrate payment gateway for services
+- [ ] Add admin dashboard for logistics management
 
 ## Tech Stack + Features
 
@@ -220,7 +139,7 @@ https://github.com/mickasmt/next-saas-stripe-starter/assets/62285783/828a4e0f-30
 
 ### Platforms
 
-- [CapRover](https://caprover.com/) – Free and open-source PaaS for easy deployment with Docker
+- [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
 - [Resend](https://resend.com/) – A powerful email framework for streamlined email development
 - [Neon](https://neon.tech/) – Serverless Postgres with autoscaling, branching, bottomless storage and generous free tier.
 
@@ -251,7 +170,7 @@ https://github.com/mickasmt/next-saas-stripe-starter/assets/62285783/828a4e0f-30
 
 ### Miscellaneous
 
-- Analytics ready – Easily integrate your preferred analytics solution (Vercel Analytics disabled by default)
+- [Vercel Analytics](https://vercel.com/analytics) – Track unique visitors, pageviews, and more in a privacy-friendly way
 
 ## Author
 
