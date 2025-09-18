@@ -2,14 +2,33 @@
 
 echo "Starting application deployment..."
 
-# Run Prisma migrations
-echo "Running Prisma migrations..."
-npx prisma migrate deploy
+# Check if Prisma CLI is available
+echo "Checking Prisma CLI availability..."
+if ! command -v prisma &> /dev/null; then
+    echo "ERROR: Prisma CLI not found!"
+    exit 1
+fi
 
-if [ $? -eq 0 ]; then
+prisma --version
+
+# Test database connection
+echo "Testing database connection..."
+prisma db execute --stdin <<< "SELECT 1;" || {
+    echo "WARNING: Database connection test failed, but continuing..."
+}
+
+# Run Prisma migrations with verbose output
+echo "Running Prisma migrations..."
+prisma migrate deploy --verbose
+
+MIGRATION_EXIT_CODE=$?
+if [ $MIGRATION_EXIT_CODE -eq 0 ]; then
     echo "Migrations completed successfully"
 else
-    echo "Migration failed, but continuing with application start..."
+    echo "ERROR: Migration failed with exit code $MIGRATION_EXIT_CODE"
+    echo "Attempting to check migration status..."
+    prisma migrate status || echo "Could not check migration status"
+    echo "Continuing with application start despite migration failure..."
 fi
 
 # Start the Next.js application
