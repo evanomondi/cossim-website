@@ -13,13 +13,13 @@ prisma --version
 
 # Test database connection
 echo "Testing database connection..."
-echo "SELECT 1;" | prisma db execute --stdin || {
+echo "SELECT 1;" | prisma db execute --stdin --schema=prisma/schema.prisma || {
     echo "WARNING: Database connection test failed, but continuing..."
 }
 
-# Run Prisma migrations with verbose output
+# Run Prisma migrations
 echo "Running Prisma migrations..."
-prisma migrate deploy --verbose
+prisma migrate deploy
 
 MIGRATION_EXIT_CODE=$?
 if [ $MIGRATION_EXIT_CODE -eq 0 ]; then
