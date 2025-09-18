@@ -25,6 +25,7 @@ export const {
     signIn: "/login",
     // error: "/auth/error",
   },
+  trustHost: true, // Allow trusted hosts in production
   callbacks: {
     async session({ token, session }) {
       if (session.user) {
