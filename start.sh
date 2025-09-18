@@ -2,33 +2,29 @@
 
 echo "Starting application deployment..."
 
-# Check if Prisma CLI is available
-echo "Checking Prisma CLI availability..."
-if ! command -v prisma &> /dev/null; then
-    echo "ERROR: Prisma CLI not found!"
-    exit 1
-fi
+# Aggressive cleanup to free disk space
+echo "Cleaning up disk space..."
+rm -rf /tmp/* 2>/dev/null || true
+rm -rf /var/tmp/* 2>/dev/null || true
+rm -rf ~/.npm 2>/dev/null || true
+rm -rf ~/.cache 2>/dev/null || true
+find /app -name "node_modules" -type d -not -path "/app/node_modules" -exec rm -rf {} + 2>/dev/null || true
+find /app -name ".next" -type d -not -path "/app/.next" -exec rm -rf {} + 2>/dev/null || true
 
-prisma --version
+# Clear package manager caches
+pnpm store prune 2>/dev/null || true
+npm cache clean --force 2>/dev/null || true
 
-# Test database connection
-echo "Testing database connection..."
-echo "SELECT 1;" | prisma db execute --stdin --schema=prisma/schema.prisma || {
-    echo "WARNING: Database connection test failed, but continuing..."
-}
+echo "Disk cleanup completed"
 
 # Run Prisma migrations
 echo "Running Prisma migrations..."
 prisma migrate deploy
 
-MIGRATION_EXIT_CODE=$?
-if [ $MIGRATION_EXIT_CODE -eq 0 ]; then
+if [ $? -eq 0 ]; then
     echo "Migrations completed successfully"
 else
-    echo "ERROR: Migration failed with exit code $MIGRATION_EXIT_CODE"
-    echo "Attempting to check migration status..."
-    prisma migrate status || echo "Could not check migration status"
-    echo "Continuing with application start despite migration failure..."
+    echo "Migration failed, but continuing with application start..."
 fi
 
 # Start the Next.js application

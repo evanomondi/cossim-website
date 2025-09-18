@@ -36,7 +36,12 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Install pnpm and Prisma CLI globally for migrations
-RUN npm install -g pnpm prisma
+RUN npm install -g pnpm prisma && \
+    # Clean up package manager caches and temporary files
+    rm -rf ~/.npm ~/.cache /tmp/* /var/tmp/* && \
+    # Remove any leftover build artifacts
+    find /app -name "*.log" -delete 2>/dev/null || true && \
+    find /app -name ".DS_Store" -delete 2>/dev/null || true
 
 COPY --from=builder /app/public ./public
 
@@ -55,7 +60,13 @@ COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 RUN echo '{"dependencies":{"prisma":"^5.17.0","@prisma/client":"6.16.2"}}' > package.json
 
 # Install only Prisma CLI and client for migrations (much smaller)
-RUN pnpm install --prod
+RUN pnpm install --prod && \
+    # Clean up package manager caches and temporary files
+    pnpm store prune && \
+    rm -rf ~/.npm ~/.cache /tmp/* /var/tmp/* && \
+    # Remove any leftover build artifacts
+    find /app -name "*.log" -delete 2>/dev/null || true && \
+    find /app -name ".DS_Store" -delete 2>/dev/null || true
 
 # Copy startup script
 COPY --chown=nextjs:nodejs start.sh /app/start.sh
