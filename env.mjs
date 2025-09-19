@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    // This is optional because it's only used in development.
+    // Optional for development, but required for production.
     // See https://next-auth.js.org/deployment.
     NEXTAUTH_URL: z.string().url().optional(),
     AUTH_SECRET: z.string().min(1).optional(),
